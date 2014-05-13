@@ -37,19 +37,20 @@ public class QuellenSteuer {
 	
 	}
 
-	
 	public static void waitforInput(String[] args) {	
-	
-		// Prüfen der Argumente im Comamndprompt
-//		if (args.length == 0) {
-//			System.out.println("Fehlende Argumente.");
-//			help();
-//			System.exit(-1);
-//		}
 		
 		if( args.length==0 ) {
-	          System.out.println("Fehlende Argumente.");
-	          help();   
+			help();
+			Scanner input = new Scanner(System.in);
+			System.out.print("Bitte Auswahl angeben: "); 
+			String s = input.nextLine();
+			
+			if(s.equals("exit")){
+				System.out.println("Das Programm wurde beendet");
+				System.exit(-1);
+			}
+			
+			args = s.split(" ");   
 	    }
 
 		String cmd = args[0];
@@ -135,12 +136,7 @@ public class QuellenSteuer {
 			System.out.println("Falsche Argumentliste");
 		}
 		
-		help();
-		Scanner input = new Scanner(System.in);
-		System.out.print("Bitte Auswahl angeben: "); 
-		String s = input.nextLine();
-		args[0] = s;
-		waitforInput(args);
+		waitforInput(new String[0]);
 			
 	}
 	
@@ -326,12 +322,16 @@ public class QuellenSteuer {
 	     		else if(discriminator[1].equals("bfs")){
 	     			if(discriminator.length != 3){
 	     				System.out.println("Keine BFS Nummer eingegeben. Bitt geben Sie einen Befehl im Format GEM bfs <BFS NR>");
-	     				//Aufruf der waitforInput()
-	     				//waitforInput(new String array[] args)
+	     				waitforInput(new String[0]);
 	     			}
+	     			//ToDo: GEM mit BFS ID auslesen und löschen
 	     		}
 	          
-	     	} else {
+	     	} else if (discriminator[0] == "QUP" || discriminator[0].equals(QUP.DISCRIMINATOR)) {
+	     		
+	     		//ToDo: QUP löschen handhaben
+	     		
+	      	}else {
 	            System.out.println("Parsing error. Kein gültiger Discriminator: " + discriminator);
 	     	}
 	     	System.out.println("Anzahl der Zeilen: " + line_ct);
@@ -341,8 +341,6 @@ public class QuellenSteuer {
 		//ToDo: Prüfung für alle Argumente
 		
 	}
-	
-	
 	
 	private static void show( Scanner sc ) {
 	      int line_ct = 0;
