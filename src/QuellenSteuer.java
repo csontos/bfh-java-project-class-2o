@@ -39,17 +39,20 @@ public class QuellenSteuer {
 
 	public static void waitforInput(String[] args) {	
 		
+		//Falls beim Aufruf keine Argumente mitgegeben werden, können diese auf der Komandozeile eingegeben werden
 		if( args.length==0 ) {
 			help();
 			Scanner input = new Scanner(System.in);
 			System.out.print("Bitte Auswahl angeben: "); 
 			String s = input.nextLine();
 			
+			//Bei der Eingabe "exit" schliesst sich das Programm
 			if(s.equals("exit")){
 				System.out.println("Das Programm wurde beendet");
 				System.exit(-1);
 			}
 			
+			//Der eigegenene String wird nach dem Leerzeichen getrennt und die einzelnen Elemente als die Argumente des Programms definiert
 			args = s.split(" ");   
 	    }
 
@@ -299,8 +302,6 @@ public class QuellenSteuer {
 	            break;
 	         
 	         line_ct++;
-	         
-	         // Ausgabe gemäss C1 Aufgabe im Unterricht vom 12.05.2014
 
 	        String[] discriminator = line.split(" ");
 
@@ -311,7 +312,8 @@ public class QuellenSteuer {
 	     				boolean match = false;
 	     					
 	     				for(int j = 0; j < qups.size(); j++){
-	     					if(qups.get(j).getWohnort() == gems.get(i).getBfs()) match = true;
+	     					if(qups.get(j).getWohnort() == gems.get(i).getBfs())
+	     						match = true;
 	     				}
 	     					
 	     				if(match == false){
