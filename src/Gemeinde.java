@@ -71,7 +71,7 @@ public class Gemeinde implements Comparable {
    
    public int compareTo( Object o ) {
 	   Gemeinde that = (Gemeinde)o;
-	   /*  Standortsortierung: bfs - name - kanton
+	   /*  Standardsortierung: bfs - name - kanton
 	    * 
 	    */
 	   int cmp = this.bfs - that.bfs;

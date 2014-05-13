@@ -43,7 +43,8 @@ public class ABR {
 		      int Monat = Integer.parseInt(values.get(4));
 		      double Betrag = Double.parseDouble(values.get(5));
 		      //return new ABR( ID, Qup.ID, Ssl.ID, Jahr, Monat, Betrag );
-		      return new ABR( ID, Qup.ID, Ssl.ID, Jahr, Monat, Betrag );
+		     // return new ABR( ID, Qup.ID, Ssl.ID, Jahr, Monat, Betrag );
+		      return null;
 		      }
 		      catch(RuntimeException r) {
 		         throw new RuntimeException("Error: " + r.getMessage() + "\n" + format());

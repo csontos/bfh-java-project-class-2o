@@ -344,76 +344,88 @@ public class QuellenSteuer {
 		
 	}
 	
-	private static void show( Scanner sc ) {
-	      int line_ct = 0;
-	      int imp_ct = 0;
-	      
-	      String line = "";
-	      
-	      while( true ) {
-	         System.out.println("Eingabe:");
-	         line = sc.nextLine();
-	         
-	         if( line==null )
-	            break;
-	         if (line.length() == 0 || line.charAt(0) == '#') // Leere Zeilen oder Kommentarzeilen ignorieren
-	            continue;
-	         if( line.charAt(0)==EOF_CHAR )
-	            break;
-	         
-	         line_ct++;
-	         
-	         // Format:
-	         // GEM
-	         // GEM k
-	         // GEM b
-	         // QUP
-	         // QUP k
-	         // SSL
-	         // SSL k
-	         // ABR
-	         // ABR kanton_kuerzel
-	         
-	         // Ausgabe gemäss C1 Aufgabe im Unterricht vom 12.05.2014
+	private static void show(Scanner sc) {
+		// Abbruchbedingungen definieren
+		int line_ct = 0;
+		int imp_ct = 0;
 
-	         String discriminator; // suche ":" in "GEM: 2732; AG; Uezwil"
-	         discriminator = line.substring(0).trim();
-	         //System.out.println(discriminator);
+		String line = "";
+		while (true) {
+			System.out.println("Eingabe:");
+			line = sc.nextLine();
 
-	         List<String> tokens = new LinkedList<String>(); // alle Tokens
-	                                                         // einlesen, Trenner
-	                                                         // ist ";"
+			if (line == null)
+				break;
+			if (line.length() == 0 || line.charAt(0) == '#') // Leere Zeilen
+																// oder
+																// Kommentarzeilen
+																// ignorieren
+				continue;
+			if (line.charAt(0) == EOF_CHAR)
+				break;
+			line_ct++;
 
-	     	if (discriminator == "GEM" || discriminator.equals(Gemeinde.DISCRIMINATOR)) {
-	     		
-	     		Collections.sort(gems);
-	     		System.out.println(gems.toString());
-	     		// Darf nur ausgeführt werden, falls "GEM k" gewählt ist.
-	     		Collections.sort(gems, Gemeinde.GEM_K);
-	     		System.out.println(gems.toString());
-	     	// Darf nur ausgeführt werden, falls "GEM b" gewählt ist.
-	     		Collections.sort(gems, Gemeinde.GEM_B);
-	     		System.out.println(gems.toString());
-	          
-	     	} 
-	     	/*else if (discriminator == "QUP" || discriminator.equals(QUP.DISCRIMINATOR)) {
-	     		
-	     		Collections.sort(qups);
-	     		System.out.println(qups.toString());
-	          
-	     	} 
-	     	else if (discriminator == "SSL" || discriminator.equals(SSL.DISCRIMINATOR)) {
-	     		
-	     		Collections.sort(ssls);
-	     		System.out.println(ssls.toString());
-	          
-	     	} */
-	     	else {
-	            System.out.println("Parsing error. Kein gültiger Discriminator: " + discriminator);
-	        }
-	      System.out.println("Anzahl der Zeilen: " + line_ct);
-	      System.out.println("Anzahl der Datensätze: " + imp_ct);
-	   }
+			/*
+			 * Format für die Anzeige mit "show" // GEM // GEM k // GEM b // QUP
+			 * // QUP k // SSL // SSL k // ABR // ABR kanton_kuerzel
+			 */
+
+			String[] discriminator = line.split(" ");
+			// String discriminator; // suche ":" in "GEM: 2732; AG; Uezwil"
+			// discriminator = line.substring(0).trim();
+			// System.out.println(discriminator);
+
+			List<String> tokens = new LinkedList<String>(); // alle Tokens
+															// einlesen, Trenner
+															// ist ";"
+
+			if (discriminator[0] == "GEM"
+					|| discriminator[0].equals(Gemeinde.DISCRIMINATOR)) {
+				Collections.sort(gems);
+				System.out.println(gems.toString());
+			} else if (discriminator[1].equals("k")) {
+				Collections.sort(gems, Gemeinde.GEM_K);
+				System.out.println(gems.toString());
+			} else if (discriminator[1].equals("b")) {
+				Collections.sort(gems, Gemeinde.GEM_B);
+				System.out.println(gems.toString());
+			}
+/*
+			if (discriminator[0] == "QUP"
+					|| discriminator[0].equals(QUP.DISCRIMINATOR)) {
+				// dann mach was
+			} else if (discriminator[1].equals("k")) {
+				// Collections.sort(qups, Gemeinde.QUP_K);
+				// System.out.println(qups.toString());
+			}
+
+			if (discriminator[0] == "SSL"
+					|| discriminator[0].equals(SSL.DISCRIMINATOR)) {
+				// dann mach was
+			}
+
+			else if (discriminator[1].equals("k")) {
+				// Collections.sort(ssls, Gemeinde.SSL_K);
+				// System.out.println(ssls.toString());
+			}
+
+			if (discriminator[0] == "ABR"
+					|| discriminator[0].equals(ABR.DISCRIMINATOR)) {
+				// mach was
+			}
+			/*
+			 * else if (discriminator[1].equals("id")){ // Hier nach
+			 * kanton_kürzel abfragen }
+			 */
+
+			else {
+				System.out
+						.println("Parsing error. Kein gültiger Discriminator: "
+								+ discriminator);
+			}
+			System.out.println("Anzahl der Zeilen: " + line_ct);
+			System.out.println("Anzahl der Datensätze: " + imp_ct);
+		}
 	}
 
 	
