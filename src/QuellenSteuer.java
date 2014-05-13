@@ -37,6 +37,7 @@ public class QuellenSteuer {
 	          help();
 	        
 	    }
+		System.out.println("Hallo Robin. GitHub");
 		
 		while (args.length != 0){
 			waitforInput(args);
