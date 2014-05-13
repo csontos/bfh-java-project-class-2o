@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Comparator;
 
 /*
  Klasse:
@@ -57,6 +58,7 @@ public class QUP {
 					+ format());
 		}
 	}
+	
 
 	private static String format() {
 		return "Erwartetes Format:\n" + DISCRIMINATOR + ":"
