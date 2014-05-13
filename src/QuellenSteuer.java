@@ -363,7 +363,20 @@ public class QuellenSteuer {
 	     		Collections.sort(gems);
 	     		System.out.println(gems.toString());
 	          
-	     	} else {
+	     	} 
+	     	/*else if (discriminator == "QUP" || discriminator.equals(QUP.DISCRIMINATOR)) {
+	     		
+	     		Collections.sort(qups);
+	     		System.out.println(qups.toString());
+	          
+	     	} 
+	     	else if (discriminator == "SSL" || discriminator.equals(SSL.DISCRIMINATOR)) {
+	     		
+	     		Collections.sort(ssls);
+	     		System.out.println(ssls.toString());
+	          
+	     	} */
+	     	else {
 	            System.out.println("Parsing error. Kein gültiger Discriminator: " + discriminator);
 	        }
 	      System.out.println("Anzahl der Zeilen: " + line_ct);
