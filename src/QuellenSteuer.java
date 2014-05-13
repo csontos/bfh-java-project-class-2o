@@ -65,7 +65,7 @@ public class QuellenSteuer {
 				} catch (FileNotFoundException fnfe) {
 					System.out.println("Datei " + f.getName()
 							+ " kann nicht gefunden werden.");
-					System.exit(-1);
+					waitforInput(new String[0]);
 				}
 			} else { // Einlesen von stdin
 				sc = new Scanner(System.in);
@@ -82,7 +82,7 @@ public class QuellenSteuer {
 
 			if (args.length <= 1) {
 				System.out.println("Falsche Anzahl von Argumenten für exp.");
-				System.exit(-1);
+				waitforInput(new String[0]);
 			}
 
 			discriminator = args[1].trim();
@@ -97,7 +97,7 @@ public class QuellenSteuer {
 				} catch (FileNotFoundException fnfe) {
 					System.out.println("Datei " + f.getName()
 							+ " kann nicht geöffnet werden.");
-					System.exit(-1);
+					waitforInput(new String[0]);
 				}
 			} else {
 				export(discriminator, System.out);
@@ -109,7 +109,7 @@ public class QuellenSteuer {
 
 			if (args.length > 3) {
 				System.out.println("Falsche Anzahl von Argumenten für show.");
-				System.exit(-1);
+				waitforInput(new String[0]);
 			}
 
 			show(sc);
@@ -124,7 +124,7 @@ public class QuellenSteuer {
 			
 			if (args.length != 1) {
 				System.out.println("Falsche Anzahl von Argumenten für del.");
-				System.exit(-1);
+				waitforInput(new String[0]);
 			}
 			
 			//Del Funktion aufrufen
