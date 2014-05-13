@@ -7,7 +7,7 @@ Beschreibung:
 
 import java.util.List;
 
-public class Gemeinde {
+public class Gemeinde implements Comparable {
    public final static String DISCRIMINATOR = "GEM";
    
    private int bfs;        //BFS-Gemeindenummer
@@ -42,7 +42,7 @@ public class Gemeinde {
    }
    
    public String toString(){
-      return bfs + "; " + kanton.name() + "; " + name;
+      return bfs + "; " + name + "; " + kanton.name();
    }
    
    public double steuerGemeinde() {
@@ -64,7 +64,27 @@ public class Gemeinde {
       Gemeinde that = (Gemeinde)o;
       return that.bfs==this.bfs;
    }
-
+   
+   public int compareTo( Object o ) {
+	   Gemeinde that = (Gemeinde)o;
+	   /*  Standortsortierung: bfs - name - kanton
+	    * 
+	    */
+	   int cmp = this.bfs - that.bfs;
+	   if (cmp != 0)
+		   return cmp;
+	   
+	   cmp = this.name.compareTo(that.name);
+	   if (cmp != 0)
+		   return cmp;
+	   
+	   cmp = this.kanton.compareTo(that.kanton);
+	   if (cmp != 0)
+		   return cmp;
+	   
+	   return 0;
+   }
+   
    public int hashCode() {
       return bfs;
    }

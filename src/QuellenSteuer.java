@@ -7,6 +7,8 @@ Beschreibung:
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -358,6 +360,7 @@ public class QuellenSteuer {
 
 	     	if (discriminator == "GEM" || discriminator.equals(Gemeinde.DISCRIMINATOR)) {
 	     		
+	     		Collections.sort(gems);
 	     		System.out.println(gems.toString());
 	          
 	     	} else {
