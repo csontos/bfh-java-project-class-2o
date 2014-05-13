@@ -362,6 +362,12 @@ public class QuellenSteuer {
 	     		
 	     		Collections.sort(gems);
 	     		System.out.println(gems.toString());
+	     		// Darf nur ausgeführt werden, falls "GEM k" gewählt ist.
+	     		Collections.sort(gems, Gemeinde.GEM_K);
+	     		System.out.println(gems.toString());
+	     	// Darf nur ausgeführt werden, falls "GEM b" gewählt ist.
+	     		Collections.sort(gems, Gemeinde.GEM_B);
+	     		System.out.println(gems.toString());
 	          
 	     	} 
 	     	/*else if (discriminator == "QUP" || discriminator.equals(QUP.DISCRIMINATOR)) {
