@@ -122,6 +122,24 @@ public class QuellenSteuer {
 
 //			if (sc != null)
 //				sc.close();
+		} else if (cmd.equals("del")) {
+			String discriminator = null;
+			String param = null;
+			discriminator = args[1].trim();
+			
+			if(args.length == 2){
+				param = args[2];
+			}
+			
+			if ((args.length < 1)||(args.length > 3)) {
+				System.out.println("Falsche Anzahl von Argumenten für exp.");
+				System.exit(-1);
+			}
+			
+			//Del Funktion aufrufen
+			del(discriminator, param);
+			
+			
 		}
 		
 		
@@ -277,6 +295,24 @@ public class QuellenSteuer {
       System.out.println("Anzahl der Zeilen: " + line_ct);
       System.out.println("Anzahl der Datensätze: " + imp_ct);
    }
+	
+	private static void del(String discriminator, String param) {
+		//ToDo: Prüfung für alle Argumente
+		if(discriminator == "GEM"){
+			for(int i = 0; i < gems.size(); i++){
+				boolean match = false;
+				
+				for(int j = 0; j < qups.size(); j++){
+					if(qups.get(j).getWohnort() == gems.get(i).getBfs()) match = true;
+				}
+				
+				if(match == false){
+					gems.remove(i);
+				}
+			}
+		}
+		//ToDo: Prüfung für weitere Argumente
+	}
 	
 	
 	

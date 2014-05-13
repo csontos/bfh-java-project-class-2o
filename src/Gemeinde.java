@@ -13,7 +13,6 @@ public class Gemeinde {
    private int bfs;        //BFS-Gemeindenummer
    private String name;
    private Kanton kanton;
-   
 
    public Gemeinde(int bfs, String name, Kanton kanton) {
       this.bfs=bfs; this.name=name; this.kanton=kanton;
@@ -21,6 +20,10 @@ public class Gemeinde {
    
    public Gemeinde(int bfs, String name, String kanton) {
       this(bfs, name, Kanton.valueOf( kanton ));
+   }
+   
+   public int getBfs() {
+	   return bfs;
    }
    
    public static Gemeinde getGemeinde( List<String> values ) {
