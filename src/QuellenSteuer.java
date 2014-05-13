@@ -20,34 +20,20 @@ public class QuellenSteuer {
 	// Daten werden in List verwaltet
 	private static List<Gemeinde> gems = new LinkedList<Gemeinde>();
 	private static List<SSL> ssls = new LinkedList<SSL>();
+	private static List<QUP> qups = new LinkedList<QUP>();
+	private static List<ABR> abrs = new LinkedList<ABR>();
 
 	public static List<SSL> getSsls() {
 		return ssls;
 	}
-
-	private static List<QUP> qups = new LinkedList<QUP>();
-	private static List<ABR> abrs = new LinkedList<ABR>();
-
+	
 	public static void main(String[] args) {
 		/** eigene Methode "waitforInput" erstellen mit Code oder While Schleife
 		*   Hier wird geprüft, ob bereits Argumente mitgegeben werden, falls nicht via Scanner einlesen. Sollange nicht exit oder sonst irgendwas gewählt wird,
 		*   soll die Eingabe von Argumenten wiederholt werden.
 		*/
 		
-		if( args.length==0 ) {
-	          System.out.println("Fehlende Argumente.");
-	          help();
-	        
-	    }
-		
-		while (args.length != 0){
-			waitforInput(args);
-			help();
-			Scanner input = new Scanner(System.in);
-			System.out.print("Bitte Auswahl angeben: "); 
-			String s = input.nextLine();
-			args[0] = s;
-		}
+		waitforInput(args);
 	
 	}
 
@@ -60,6 +46,11 @@ public class QuellenSteuer {
 //			help();
 //			System.exit(-1);
 //		}
+		
+		if( args.length==0 ) {
+	          System.out.println("Fehlende Argumente.");
+	          help();   
+	    }
 
 		String cmd = args[0];
 
@@ -126,34 +117,30 @@ public class QuellenSteuer {
 //				sc.close();
 		} else if (cmd.equals("del")) {
 			String discriminator = null;
-			String param = null;
-			discriminator = args[1].trim();
 			
-			if(args.length == 2){
-				param = args[2];
-			}
+			Scanner sc = null;
+			sc = new Scanner(System.in);
 			
-			if ((args.length < 1)||(args.length > 3)) {
-				System.out.println("Falsche Anzahl von Argumenten für exp.");
+			if (args.length != 1) {
+				System.out.println("Falsche Anzahl von Argumenten für del.");
 				System.exit(-1);
 			}
 			
 			//Del Funktion aufrufen
-			del(discriminator, param);
-			
+			del(sc);
 			
 		}
-		
-		
-		
-		// Hier müssen folgende Parameter entgegen genommen werden. Show, del
-		// und stat
 
 		else {
 			System.out.println("Falsche Argumentliste");
-			help();
-			System.exit(-1);
 		}
+		
+		help();
+		Scanner input = new Scanner(System.in);
+		System.out.print("Bitte Auswahl angeben: "); 
+		String s = input.nextLine();
+		args[0] = s;
+		waitforInput(args);
 			
 	}
 	
@@ -298,22 +285,61 @@ public class QuellenSteuer {
       System.out.println("Anzahl der Datensätze: " + imp_ct);
    }
 	
-	private static void del(String discriminator, String param) {
+	private static void del(Scanner sc) {
+		  int line_ct = 0;
+	      int imp_ct = 0;
+	      
+	      String line = "";
+	      
+	      while( true ) {
+	         System.out.println("Eingabe:");
+	         line = sc.nextLine();
+	         
+	         if( line==null )
+	            break;
+	         if (line.length() == 0 || line.charAt(0) == '#') // Leere Zeilen oder Kommentarzeilen ignorieren
+	            continue;
+	         if( line.charAt(0)==EOF_CHAR )
+	            break;
+	         
+	         line_ct++;
+	         
+	         // Ausgabe gemäss C1 Aufgabe im Unterricht vom 12.05.2014
+
+	        String[] discriminator = line.split(" ");
+
+	     	if (discriminator[0] == "GEM" || discriminator[0].equals(Gemeinde.DISCRIMINATOR)) {
+	     		
+	     		if(discriminator.length == 1){
+	     			for(int i = 0; i < gems.size(); i++){
+	     				boolean match = false;
+	     					
+	     				for(int j = 0; j < qups.size(); j++){
+	     					if(qups.get(j).getWohnort() == gems.get(i).getBfs()) match = true;
+	     				}
+	     					
+	     				if(match == false){
+	     					gems.remove(i);
+	     				}
+	     			}
+	     		}
+	     		else if(discriminator[1].equals("bfs")){
+	     			if(discriminator.length != 3){
+	     				System.out.println("Keine BFS Nummer eingegeben. Bitt geben Sie einen Befehl im Format GEM bfs <BFS NR>");
+	     				//Aufruf der waitforInput()
+	     				//waitforInput(new String array[] args)
+	     			}
+	     		}
+	          
+	     	} else {
+	            System.out.println("Parsing error. Kein gültiger Discriminator: " + discriminator);
+	     	}
+	     	System.out.println("Anzahl der Zeilen: " + line_ct);
+	     	System.out.println("Anzahl der Datensätze: " + imp_ct);
+	   }
+		
 		//ToDo: Prüfung für alle Argumente
-		if(discriminator == "GEM"){
-			for(int i = 0; i < gems.size(); i++){
-				boolean match = false;
-				
-				for(int j = 0; j < qups.size(); j++){
-					if(qups.get(j).getWohnort() == gems.get(i).getBfs()) match = true;
-				}
-				
-				if(match == false){
-					gems.remove(i);
-				}
-			}
-		}
-		//ToDo: Prüfung für weitere Argumente
+		
 	}
 	
 	
@@ -393,13 +419,7 @@ public class QuellenSteuer {
 	
 	
 	private static void help() {
-		System.out
-				.println("Das Programm Quellensteuer verwaltet Gemeinden (GEM), Quellensteuerpflichtige (QUP), "
-						+ " Schuldner Steuerbarer Leistungen (SSLs) und Quellensteuerabrechnungen (ABR) und hat folgende Funktionalität:");
-		String s = "imp  : Einlesen von Datenzeilen (GEMs, SSLs, QUPs und/oder ABRr aus Datei oder stdin\n"
-				+ "       Formate der Zeilen:\n"
-				+ "        'GEM: bfs_nr; kanton_kuerzel; gemeinde_name'\n"
-				+ "        'QUP: qup_id; name; vorname; wohnort(bfs_nr); ...' (bei nicht vorhandener qup_id wird diese automatisch vergeben)\n"
+		/* 'QUP: qup_id; name; vorname; wohnort(bfs_nr); ...' (bei nicht vorhandener qup_id wird diese automatisch vergeben)\n"
 				+ "        'SSL: ssl_id; name; sitz(bfs_nr); ...(bei nicht vorhandener ssl_id wird diese automatisch vergeben)\n"
 				+ "        'ABR: abr_id; qup(qup_id); ssl(ssl_id); jahr; monat; betrag...' (bei nicht vorhandender abr_id wird diese automatisch vergeben)\n"
 				+ "exp  : Exportieren von Daten in Datei oder nach stdout\n"
@@ -445,7 +465,7 @@ public class QuellenSteuer {
 				+ "            Summe Bruttolöhne aller QUPs, deren ABRs beim SSL erfolgen, sowie Summe Quellensteuer mit Aufteilung an Bund, Kantone und Gemeinden."
 
 		;
-		System.out.println(s);
+		System.out.println(s);*/
 	}
 
 }
