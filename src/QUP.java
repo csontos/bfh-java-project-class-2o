@@ -20,7 +20,7 @@ public class QUP {
 		this.Vorname = vorname;
 		this.Wohnort = wohnort;
 	}
-
+	
 	public int getKinder() {
 		return Kinder;
 	}

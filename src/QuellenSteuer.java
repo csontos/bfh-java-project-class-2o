@@ -1,5 +1,5 @@
 /*
-Klasse: QuellenSteuer
+Klasse:
 Beschreibung: 
 
  */
@@ -32,13 +32,12 @@ public class QuellenSteuer {
 		*   soll die Eingabe von Argumenten wiederholt werden.
 		*/
 		
-	      if( args.length==0 ) {
+		if( args.length==0 ) {
 	          System.out.println("Fehlende Argumente.");
 	          help();
 	        
-	       }
+	    }
 		
-
 		while (args.length != 0){
 			waitforInput(args);
 			help();
@@ -47,20 +46,10 @@ public class QuellenSteuer {
 			String s = input.nextLine();
 			args[0] = s;
 		}
-		
+	
 	}
-			/*
-			System.out.println("Ihre Eingabe: ");
-			sc = new Scanner(System.in);
-			args[0] = sc.next();
 
-			waitforInput(args);
-
-			if (sc != null)
-				sc.close();
-
-		} while (args[0] != "exit");
-	*/
+	
 	public static void waitforInput(String[] args) {	
 	
 		// Prüfen der Argumente im Comamndprompt
@@ -90,8 +79,8 @@ public class QuellenSteuer {
 
 			imp(sc);
 
-			if (sc != null)
-				sc.close();
+//			if (sc != null)
+//				sc.close();
 			
 		} else if (cmd.equals("exp")) {
 			PrintStream out = null;
@@ -131,8 +120,8 @@ public class QuellenSteuer {
 
 			show(sc);
 
-			if (sc != null)
-				sc.close();
+//			if (sc != null)
+//				sc.close();
 		}
 		
 		
@@ -178,7 +167,7 @@ public class QuellenSteuer {
       String line = "";
       
       while( true ) {
-         System.out.println("Eingabe:");
+         System.out.println("Eingabe: ");
          line = sc.nextLine();
          
          if( line==null )
@@ -264,10 +253,10 @@ public class QuellenSteuer {
               }
         	  
           }
-/*
+
           else if ( discriminator.equals("ABR")) {
          	  try {
-        		/ ABR a = ABR.getABR(tokens);
+        		  ABR a = ABR.getABR(tokens);
         		  if( abrs.contains( a )) {
         			  System.out.println("Die Abrechnung mit dieser ID existiert bereits.");
         			  continue;
@@ -280,7 +269,6 @@ public class QuellenSteuer {
               }
         	  
           }
-          */
          else {
             System.out.println("Parsing error. Kein gültiger Discriminator: "
                   + discriminator);
