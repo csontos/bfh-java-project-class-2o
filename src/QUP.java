@@ -1,12 +1,12 @@
 import java.util.List;
-import java.util.Comparator;
 
+import java.util.Comparator;
 /*
  Klasse:
  Beschreibung: Das ist die Klasse für den Quellensteuerpflichten (QUP)
 
  */
-public class QUP {
+public class QUP implements Comparable {
 	public final static String DISCRIMINATOR = "QUP";
 	private int ID;
 	private String Name;
@@ -14,6 +14,8 @@ public class QUP {
 	private boolean Ansaessig;
 	private int Wohnort;
 	private int Kinder;
+	
+	   final static Comparator GUP_K = new QUPkComp();
 
 	public QUP(int ID, String name, String vorname, int wohnort) {
 		this.ID = ID;
@@ -59,6 +61,48 @@ public class QUP {
 		}
 	}
 	
+	   public String toString(){
+		   return Wohnort + "; " + Name + "; " + Vorname;
+	   }
+	
+	   public int compareTo( Object o ) {
+		   QUP that = (QUP)o;
+		   /*  Sortierung: name - vorname
+		    * 
+		    */
+		   int cmp = this.Wohnort - that.Wohnort;
+		   if (cmp != 0)
+			   return cmp;
+		   
+		   cmp = this.Name.compareTo(that.Name);
+		   if (cmp != 0)
+			   return cmp;
+		   
+		   cmp = this.Vorname.compareTo(that.Vorname);
+		   if (cmp != 0)
+			   return cmp;
+		   
+		   return 0;
+	   }
+	   
+	   static class QUPkComp implements Comparator {
+		   /*  Sortierung: Kanton - Name - bfs
+		    */
+			public int compare(Object o1, Object o2) {
+				QUP q1 = (QUP)o1;
+				QUP q2 = (QUP)o2;
+				
+				int cmp = q1.Name.compareTo(q2.Name);
+				if (cmp != 0)
+					return cmp;
+				
+				cmp = q1.Vorname.compareTo(q2.Vorname)	;
+				if (cmp != 0)
+					return cmp;
+				
+				return 0;
+			}
+	   }
 
 	private static String format() {
 		return "Erwartetes Format:\n" + DISCRIMINATOR + ":"

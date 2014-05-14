@@ -50,7 +50,26 @@ public class ABR {
 		         throw new RuntimeException("Error: " + r.getMessage() + "\n" + format());
 		      }
 		   }
+	   
+	   public String toString(){
+		   return ID + "; " + Bruttolohn + ";" ;
+	   }
 
+	   public int compareTo( Object o ) {
+		   ABR that = (ABR)o;
+		   /*  Anzeige aller Abrechnungen. Sortierung nach steuerlich relevantem Sitz
+		    * 
+		    */
+//		   int cmp = this.Firmenname.compareTo(that.Firmenname);
+//		   if (cmp != 0)
+//			   return cmp;
+//		   
+//		   cmp = this.Sitz - that.Sitz;
+//		   if (cmp != 0)
+//			   return cmp;
+		   
+		   return 0;
+	   }
 	   
 	   private static String format() {
 		      return "Erwartetes Format:\n"+ DISCRIMINATOR + ":" + " ID, QUP_ID; SSL_ID; Jahr; Monat; Betrag";

@@ -1,3 +1,4 @@
+import java.util.Comparator;
 import java.util.List;
 import java.util.Collections;
 
@@ -11,6 +12,8 @@ public class SSL {
 	private static int ID; //wenn es diese nicht gibt, setzen
 	private static String Firmenname;
 	private static int Sitz;
+	
+	   final static Comparator SSL_K = new SSLkComp();
 	
 	
 	public SSL(int iD, String firmenname, int sitz) {
@@ -41,6 +44,45 @@ public class SSL {
 					+ format());
 		}
 	}
+	
+	   public String toString(){
+		   return Firmenname + "; " + Sitz;
+	   }
+	
+	   public int compareTo( Object o ) {
+		   SSL that = (SSL)o;
+		   /*  Sortierung: name - sitz
+		    * 
+		    */
+		   int cmp = this.Firmenname.compareTo(that.Firmenname);
+		   if (cmp != 0)
+			   return cmp;
+		   
+		   cmp = this.Sitz - that.Sitz;
+		   if (cmp != 0)
+			   return cmp;
+		   
+		   return 0;
+	   }
+	   
+	   static class SSLkComp implements Comparator {
+		   /*  Sortierung: Kanton - Name - bfs
+		    */
+			public int compare(Object o1, Object o2) {
+				SSL s1 = (SSL)o1;
+				SSL s2 = (SSL)o2;
+				
+				int cmp = s1.Sitz - s2.Sitz;
+				if (cmp != 0)
+					return cmp;
+				
+				cmp = s1.Firmenname.compareTo(s2.Firmenname);
+				if (cmp != 0)
+					return cmp;
+				
+				return 0;
+			}
+	   }
 
 	   private static String format() {
 		      return "Erwartetes Format:\n"+ DISCRIMINATOR + ":" + " ID; Name; Sitz";
