@@ -13,6 +13,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.swing.text.html.HTMLDocument.Iterator;
+
 public class QuellenSteuer {
 
 	private final static char EOF_CHAR = '-'; // signalisiert Ende der Eingabe
@@ -326,7 +328,21 @@ public class QuellenSteuer {
 	     				System.out.println("Keine BFS Nummer eingegeben. Bitt geben Sie einen Befehl im Format GEM bfs <BFS NR>");
 	     				waitforInput(new String[0]);
 	     			}
-	     			//ToDo: GEM mit BFS ID auslesen und löschen
+	     			
+	     			int bfsid = 0;
+     				try{
+     					bfsid = Integer.parseInt(discriminator[2]);
+     				} 
+     				catch (RuntimeException re) {
+     					System.out.println("BFS ID hat kein valides Format");
+     					waitforInput(new String[0]);
+     				}
+	     			
+	     			for(int i = 0; i < gems.size(); i++){
+	     				if(gems.get(i).getBfs() == bfsid){
+	     					gems.remove(gems.get(i));
+	     				}
+	     			}
 	     		}
 	          
 	     	} else if (discriminator[0] == "QUP" || discriminator[0].equals(QUP.DISCRIMINATOR)) {
