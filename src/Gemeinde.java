@@ -9,7 +9,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
-public class Gemeinde implements Comparable, Iterator {
+public class Gemeinde implements Comparable {
    public final static String DISCRIMINATOR = "GEM";
    
    private int bfs;        //BFS-Gemeindenummer
