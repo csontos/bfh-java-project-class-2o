@@ -33,6 +33,10 @@ public class QuellenSteuer {
 		return qups;
 	}
 	
+	public static List<ABR> getAbrs() {
+		return abrs;
+	}
+	
 	public static void main(String[] args) {
 		/** eigene Methode "waitforInput" erstellen mit Code oder While Schleife
 		*   Hier wird geprüft, ob bereits Argumente mitgegeben werden, falls nicht via Scanner einlesen. Sollange nicht exit oder sonst irgendwas gewählt wird,
@@ -205,7 +209,6 @@ public class QuellenSteuer {
             continue;
          }
          discriminator = line.substring(0, colonPosition).trim();
-         //System.out.println(discriminator);
          line = line.substring(colonPosition + 1).trim();
 
          List<String> tokens = new LinkedList<String>(); // alle Tokens
