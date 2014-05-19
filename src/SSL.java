@@ -13,6 +13,7 @@ public class SSL implements Comparable{
 	private static String Firmenname;
 	private static int Sitz;
 	
+	final static Comparator SSL_id = new SSLidComp();
 	
 	public SSL(int iD, String firmenname, int sitz) {
 		
@@ -28,9 +29,8 @@ public class SSL implements Comparable{
 			if(QuellenSteuer.getSsls().size() == 0) {
 				NewID = 1;
 			} else {
-				Collections.sort(QuellenSteuer.getSsls());
+				Collections.sort(QuellenSteuer.getSsls(), SSL.SSL_id);
 				int LargestId = QuellenSteuer.getSsls().get(QuellenSteuer.getSsls().size()-1).getID();
-				System.out.println(LargestId);
 				NewID = LargestId++;
 			}
 			Name = values.get(0);

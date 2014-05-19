@@ -60,8 +60,7 @@ public class QUP implements Comparable {
 				NewID = 1;
 			} else {
 				Collections.sort(QuellenSteuer.getQups(), QUP.GUP_id);
-				int LargestId = QuellenSteuer.getQups().get(QuellenSteuer.getQups().size()-1).getID();
-				System.out.println(LargestId);
+				int LargestId = QuellenSteuer.getQups().get(QuellenSteuer.getQups().size()-1).getID();				
 				NewID = LargestId++;
 			}
 			name = values.get(0);
