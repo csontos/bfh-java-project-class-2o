@@ -1,3 +1,4 @@
+import java.util.Comparator;
 import java.util.List;
 import java.util.Collections;
 
@@ -11,6 +12,7 @@ public class SSL implements Comparable{
 	private static int ID; //wenn es diese nicht gibt, setzen
 	private static String Firmenname;
 	private static int Sitz;
+	
 	
 	public SSL(int iD, String firmenname, int sitz) {
 		
@@ -50,6 +52,16 @@ public class SSL implements Comparable{
 			throw new RuntimeException("Error: " + r.getMessage() + "\n"
 					+ format());
 		}
+	}
+	
+	static class SSLidComp implements Comparator {
+		public int compare(Object o1, Object o2) {
+			SSL s1 = (SSL)o1;
+			SSL s2 = (SSL)o2;
+			
+			return s1.ID - s2.ID;
+		}
+
 	}
 	
 	public static int getID() {
