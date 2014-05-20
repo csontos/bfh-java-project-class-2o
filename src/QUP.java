@@ -15,8 +15,8 @@ public class QUP implements Comparable {
 	private int Wohnort;
 	private int Kinder;
 	
-	final static Comparator GUP_K = new QUPkComp();
-	final static Comparator GUP_id = new QUPidComp();
+	final static Comparator QUP_K = new QUPkComp();
+	final static Comparator QUP_id = new QUPidComp();
 
 	public QUP(int ID, String name, String vorname, int wohnort) {
 		this.ID = ID;
@@ -59,7 +59,7 @@ public class QUP implements Comparable {
 			if(QuellenSteuer.getQups().size() == 0) {
 				NewID = 1;
 			} else {
-				Collections.sort(QuellenSteuer.getQups(), QUP.GUP_id);
+				Collections.sort(QuellenSteuer.getQups(), QUP.QUP_id);
 				int LargestId = QuellenSteuer.getQups().get(QuellenSteuer.getQups().size()-1).getID();				
 				NewID = LargestId++;
 			}

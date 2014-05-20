@@ -16,8 +16,8 @@ public class Gemeinde implements Comparable {
    private String name;
    private Kanton kanton;
    
-   final static Comparator GEM_K = new GEMkComp();
-   final static Comparator GEM_B = new GEMbComp();
+   public final static Comparator GEM_K = new GEMkComp();
+   public final static Comparator GEM_B = new GEMbComp();
 
    public Gemeinde(int bfs, String name, Kanton kanton) {
       this.bfs=bfs; this.name=name; this.kanton=kanton;

@@ -404,24 +404,52 @@ public class QuellenSteuer {
 
 			if (discriminator[0] == "GEM"
 					|| discriminator[0].equals(Gemeinde.DISCRIMINATOR)) {
-				Collections.sort(gems);
-				System.out.println(gems.toString());
-			} else if (discriminator[1].equals("k")) {
-				Collections.sort(gems, Gemeinde.GEM_K);
-				System.out.println(gems.toString());
-			} else if (discriminator[1].equals("b")) {
-				Collections.sort(gems, Gemeinde.GEM_B);
-				System.out.println(gems.toString());
+				if(discriminator.length == 1){
+					// debug
+					System.out.println("Standardsortierung GEM");
+					Collections.sort(gems);
+					System.out.println(gems.toString());
+				}
+				else {
+					
+					if (discriminator[1].equals("k")) {
+						// debug
+						System.out.println("Sortierung GEM k");
+						Collections.sort(gems, Gemeinde.GEM_K);
+						System.out.println(gems.toString());
+					}
+					if (discriminator[1].equals("b")) {
+						// debug
+						System.out.println("Sortierung GEM b");
+						Collections.sort(gems, Gemeinde.GEM_B);
+						System.out.println(gems.toString());
+					}
+				}
 			}
-/*
+			
+
 			if (discriminator[0] == "QUP"
 					|| discriminator[0].equals(QUP.DISCRIMINATOR)) {
 				// dann mach was
-			} else if (discriminator[1].equals("k")) {
-				// Collections.sort(qups, Gemeinde.QUP_K);
-				// System.out.println(qups.toString());
+				if(discriminator.length == 1){
+					// debug
+					System.out.println("Standardsortierung QUP");
+					Collections.sort(qups);
+					System.out.println(qups.toString());
+				}
+				else {
+					
+					if (discriminator[1].equals("k")) {
+						// debug
+						System.out.println("Sortierung QUP k");
+						Collections.sort(qups, QUP.QUP_K);
+						System.out.println(qups.toString());
+					}
+				}
 			}
+				 
 
+			/*
 			if (discriminator[0] == "SSL"
 					|| discriminator[0].equals(SSL.DISCRIMINATOR)) {
 				// dann mach was
