@@ -1,0 +1,28 @@
+GEM: 1; AG; Spreitenbach
+GEM: 2; ZH; Zürich
+GEM: 3; AG; Mumpf
+GEM: 4; AG; Stein
+GEM: 5; ZH; Hedingen
+GEM: 6; AI; Rüte
+GEM: 7; ZH; Obfelden
+GEM: 8; AI; Oberegg
+GEM: 9; SZ; Gersau
+GEM: 10; SZ; Lachen
+QUP: 1; Lucas; Badertscher; 1
+QUP: 2; Klaus; Deck; 2
+QUP: 3; Robin; Csontos; 4
+QUP: 4; Fabian; Fischer; 4
+QUP: 5; Juerg; Wuest; 3
+SSL: Fritschi AG; 1
+SSL: Furrer+Frei; 2
+SSL: Planzer; 4
+ABR: 3; 1; 2014; 1; 1000
+ABR: 3; 1; 2014; 2; 1000
+ABR: 3; 1; 2014; 3; 1500
+ABR: 1; 2; 2014; 1; 500
+ABR: 1; 2; 2014; 2; 500
+ABR: 1; 2; 2014; 3; 1500
+ABR: 4; 3; 2014; 1; 10000
+ABR: 4; 3; 2014; 2; 10000
+ABR: 4; 3; 2014; 3; 1500
+-
