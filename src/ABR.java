@@ -54,12 +54,14 @@ public class ABR implements Comparable{
 					Collections.sort(QuellenSteuer.getAbrs(), ABR.ABR_id);
 					int LargestId = QuellenSteuer.getAbrs().get(QuellenSteuer.getAbrs().size()-1).getID();				
 					NewID = LargestId++;
-					tmpq = Integer.parseInt(values.get(0));
-			    	tmps = Integer.parseInt(values.get(1));
-			    	Jahr = Integer.parseInt(values.get(2));		      
-			    	Monat = Integer.parseInt(values.get(3));
-			    	Betrag = Double.parseDouble(values.get(4));  
 				}
+		   		
+		   		tmpq = Integer.parseInt(values.get(0));
+		    	tmps = Integer.parseInt(values.get(1));
+		    	Jahr = Integer.parseInt(values.get(2));		      
+		    	Monat = Integer.parseInt(values.get(3));
+		    	Betrag = Double.parseDouble(values.get(4));  
+		    	
 		   	} else if( values.size() == 6 ) {
 		   		NewID = Integer.parseInt( values.get(0) ); // Hier noch die IDs ect.. von den Objekten implementieren
 		   		tmpq = Integer.parseInt(values.get(1));
@@ -73,6 +75,7 @@ public class ABR implements Comparable{
 		   	  try {
 		   		  SSL s = null;
 		   		  for(int i = 0; i < QuellenSteuer.getSsls().size(); i++){
+		   			  System.out.println(QuellenSteuer.getSsls().get(i).getID());
 		   			  if(QuellenSteuer.getSsls().get(i).getID() == tmps)
 		   				s = QuellenSteuer.getSsls().get(i);
 		   		  }
@@ -97,7 +100,7 @@ public class ABR implements Comparable{
 	   
 	  
 
-	public String toString(){
+	   public String toString(){
 		   return ID + "; " + Bruttolohn + ";" ;
 	   }
 
