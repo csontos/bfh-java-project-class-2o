@@ -15,10 +15,15 @@ public class SSL implements Comparable{
 	
 	final static Comparator SSL_id = new SSLidComp();
 	
-	public SSL(int iD, String firmenname, int sitz) {
-		
+	public SSL(int id, String firmenname, int sitz) {
+		ID = id;
+		Firmenname = firmenname;
+		Sitz = sitz;
 	}
-
+	
+	public int getID() {
+		return ID;
+	}
 
 	public static SSL getSSL( List<String> values ) {  
 		int NewID = 0;
@@ -31,7 +36,7 @@ public class SSL implements Comparable{
 			} else {
 				Collections.sort(QuellenSteuer.getSsls(), SSL.SSL_id);
 				int LargestId = QuellenSteuer.getSsls().get(QuellenSteuer.getSsls().size()-1).getID();
-				NewID = LargestId++;
+				NewID = LargestId + 1;
 			}
 			Name = values.get(0);
 			bfs = Integer.parseInt(values.get(1));
@@ -44,10 +49,7 @@ public class SSL implements Comparable{
 					+ values.size() + "\n" + format());
 		}
 		try {
-			int ID = NewID;
-			String Firmenname = Name;
-			int Sitz = bfs;
-			return new SSL(ID, Firmenname, Sitz);
+			return new SSL(NewID, Name, bfs);
 		} catch (RuntimeException r) {
 			throw new RuntimeException("Error: " + r.getMessage() + "\n"
 					+ format());
@@ -63,10 +65,6 @@ public class SSL implements Comparable{
 		}
 
 	}
-	
-	public static int getID() {
-		return ID;
-	}
 
 	private static String format() {
 		      return "Erwartetes Format:\n"+ DISCRIMINATOR + ":" + " ID; Name; Sitz";
@@ -76,5 +74,10 @@ public class SSL implements Comparable{
 	public int compareTo(Object o) {
 		SSL that = (SSL)o;
 		return this.getID() - that.getID();
-	}	   
+	}
+	
+	public String toString(){
+		return "SSL: " + ID + "; " + Firmenname + "; " + Sitz;
+		
+	}
 }
