@@ -97,8 +97,6 @@ public class ABR implements Comparable{
 		         throw new RuntimeException("Error: " + r.getMessage() + "\n" + format());
 		      }
 		   }
-	   
-	  
 
 	   public String toString(){
 		   return ID + "; " + Bruttolohn + ";" ;
