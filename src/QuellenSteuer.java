@@ -313,30 +313,23 @@ public class QuellenSteuer {
 	         line_ct++;
 
 	        String[] discriminator = line.split(" ");
-	        
-	        //Gemeinde löschen
+
 	     	if (discriminator[0] == "GEM" || discriminator[0].equals(Gemeinde.DISCRIMINATOR)) {
-	     		//Wenn es nur ein Argument hat werden alle Elemente gelöscht
+	     		
 	     		if(discriminator.length == 1){
-	     			//Durch alle QUPS und SSLS iterieren und Gemeinden Löschen die keine Referenz haben   
 	     			for(int i = 0; i < gems.size(); i++){
 	     				boolean match = false;
+	     					
 	     				for(int j = 0; j < qups.size(); j++){
 	     					if(qups.get(j).getWohnort() == gems.get(i).getBfs())
 	     						match = true;
 	     				}
-	     				for(int k = 0; k < ssls.size(); k++){
-	     					if(ssls.get(k).getID() == gems.get(i).getBfs())
-	     						match = true;
-	     				}
-	     				
-	     				//Nicht verwendete Gemeinden löschen
+	     					
 	     				if(match == false){
 	     					gems.remove(i);
 	     				}
 	     			}
 	     		}
-	     		//Wenn die Anzahl der Argumente darauf hindeutet, dass Einträge aufgrund der BFS id gelöscht werden
 	     		else if(discriminator[1].equals("bfs")){
 	     			if(discriminator.length != 3){
 	     				System.out.println("Keine BFS Nummer eingegeben. Bitt geben Sie einen Befehl im Format GEM bfs <BFS NR>");
@@ -344,8 +337,6 @@ public class QuellenSteuer {
 	     			}
 	     			
 	     			int bfsid = 0;
-	     			
-	     			// Prüfen ob BFS ID in INT gecasted werden kann. Falls nicht wird ein Fehler geworfen
      				try{
      					bfsid = Integer.parseInt(discriminator[2]);
      				} 
@@ -354,7 +345,6 @@ public class QuellenSteuer {
      					waitforInput(new String[0]);
      				}
 	     			
-     				//Durch Gemeinden iterieren und Gemiende mit eingegebener ID löschen
 	     			for(int i = 0; i < gems.size(); i++){
 	     				if(gems.get(i).getBfs() == bfsid){
 	     					gems.remove(gems.get(i));
@@ -440,7 +430,6 @@ public class QuellenSteuer {
 
 			if (discriminator[0] == "QUP"
 					|| discriminator[0].equals(QUP.DISCRIMINATOR)) {
-				// dann mach was
 				if(discriminator.length == 1){
 					// debug
 					System.out.println("Standardsortierung QUP");
@@ -457,19 +446,9 @@ public class QuellenSteuer {
 					}
 				}
 			}
-				 
-
+				
+			
 			/*
-			if (discriminator[0] == "SSL"
-					|| discriminator[0].equals(SSL.DISCRIMINATOR)) {
-				// dann mach was
-			}
-
-			else if (discriminator[1].equals("k")) {
-				// Collections.sort(ssls, Gemeinde.SSL_K);
-				// System.out.println(ssls.toString());
-			}
-
 			if (discriminator[0] == "ABR"
 					|| discriminator[0].equals(ABR.DISCRIMINATOR)) {
 				// mach was

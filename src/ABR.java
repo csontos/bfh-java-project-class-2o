@@ -38,6 +38,7 @@ public class ABR implements Comparable{
 		return Bruttolohn;
 	}
 
+	
 	   public static ABR getABR( List<String> values ) {
 		   	int NewID = 0;
 		   	int tmpq = 0;
