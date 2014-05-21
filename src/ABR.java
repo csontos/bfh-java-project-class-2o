@@ -73,12 +73,14 @@ public class ABR implements Comparable{
 		    	  throw new RuntimeException("Falsche Anzahl von Werten: " + values.size() + "\n" + format());
 		    }
 		   	  try {
+		   		  
 		   		  SSL s = null;
 		   		  for(int i = 0; i < QuellenSteuer.getSsls().size(); i++){
-		   			  System.out.println(QuellenSteuer.getSsls().get(i).getID());
+		   			  System.out.println("SSL: " + QuellenSteuer.getSsls().get(i));
 		   			  if(QuellenSteuer.getSsls().get(i).getID() == tmps)
 		   				s = QuellenSteuer.getSsls().get(i);
 		   		  }
+		   		  
 		   		  if(s == null){
 		   			throw new RuntimeException("Keine gültige SSL id mitgegeben");
 		   		  }
@@ -88,9 +90,11 @@ public class ABR implements Comparable{
 		   			  if(QuellenSteuer.getQups().get(i).getID() == tmpq)
 		   				q = QuellenSteuer.getQups().get(i);
 		   		  }
+		   		  
 		   		  if(q == null){
 		   			throw new RuntimeException("Keine gültige QUP id mitgegeben");
 		   		  }
+		   		  
 		    	  return new ABR(NewID, q, s, Jahr, Monat, Betrag);
 		      }
 		      catch(RuntimeException r) {

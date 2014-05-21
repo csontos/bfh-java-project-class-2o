@@ -15,8 +15,10 @@ public class SSL implements Comparable{
 	
 	final static Comparator SSL_id = new SSLidComp();
 	
-	public SSL(int iD, String firmenname, int sitz) {
-		
+	public SSL(int id, String firmenname, int sitz) {
+		ID = id;
+		Firmenname = firmenname;
+		Sitz = sitz;
 	}
 
 
@@ -31,7 +33,7 @@ public class SSL implements Comparable{
 			} else {
 				Collections.sort(QuellenSteuer.getSsls(), SSL.SSL_id);
 				int LargestId = QuellenSteuer.getSsls().get(QuellenSteuer.getSsls().size()-1).getID();
-				NewID = LargestId++;
+				NewID = LargestId + 1;
 			}
 			Name = values.get(0);
 			bfs = Integer.parseInt(values.get(1));
@@ -44,10 +46,7 @@ public class SSL implements Comparable{
 					+ values.size() + "\n" + format());
 		}
 		try {
-			int ID = NewID;
-			String Firmenname = Name;
-			int Sitz = bfs;
-			return new SSL(ID, Firmenname, Sitz);
+			return new SSL(NewID, Name, bfs);
 		} catch (RuntimeException r) {
 			throw new RuntimeException("Error: " + r.getMessage() + "\n"
 					+ format());
@@ -55,7 +54,7 @@ public class SSL implements Comparable{
 	}
 	
 	   public String toString(){
-		   return Firmenname + "; " + Sitz;
+		   return ID + "; " + Firmenname + "; " + Sitz;
 	   }
 	
 	static class SSLidComp implements Comparator {
@@ -68,7 +67,7 @@ public class SSL implements Comparable{
 
 	}
 	
-	public static int getID() {
+	public int getID() {
 		return ID;
 	}
 
