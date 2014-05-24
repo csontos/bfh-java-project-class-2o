@@ -38,7 +38,7 @@ public class QuellenSteuer {
 	}
 	
 	public static void main(String[] args) {
-		/** eigene Methode "waitforInput" erstellen mit Code oder While Schleife
+		/* eigene Methode "waitforInput" erstellen mit Code oder While Schleife
 		*   Hier wird geprüft, ob bereits Argumente mitgegeben werden, falls nicht via Scanner einlesen. Sollange nicht exit oder sonst irgendwas gewählt wird,
 		*   soll die Eingabe von Argumenten wiederholt werden.
 		*/
@@ -49,7 +49,9 @@ public class QuellenSteuer {
 
 	public static void waitforInput(String[] args) {	
 		
-		//Falls beim Aufruf keine Argumente mitgegeben werden, können diese auf der Komandozeile eingegeben werden
+		/*
+		 * Falls beim Aufruf keine Argumente mitgegeben werden, können diese auf der Komandozeile eingegeben werden
+		 */
 		if( args.length==0 ) {
 			help();
 			Scanner input = new Scanner(System.in);
@@ -62,7 +64,9 @@ public class QuellenSteuer {
 				System.exit(-1);
 			}
 			
-			//Der eigegenene String wird nach dem Leerzeichen getrennt und die einzelnen Elemente als die Argumente des Programms definiert
+			/*
+			 * Der eigegenene String wird nach dem Leerzeichen getrennt und die einzelnen Elemente als die Argumente des Programms definiert
+			 */
 			args = s.split(" ");   
 	    }
 
