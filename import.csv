@@ -1,21 +1,29 @@
-GEM: 1; AG; Spreitenbach
-GEM: 2; ZH; Zürich
-GEM: 3; AG; Mumpf
-GEM: 4; AG; Stein
+GEM: 4040; AG; Spreitenbach
+GEM: 261; ZH; Zürich
+GEM: 869; BE; Kaufdorf
+GEM: 868; BE; Jaberg
+GEM: 4255; AG; Mumpf
+GEM: 4260; AG; Stein
 GEM: 5; ZH; Hedingen
-GEM: 6; AI; Rüte
-GEM: 7; ZH; Obfelden
-GEM: 8; AI; Oberegg
-GEM: 9; SZ; Gersau
-GEM: 10; SZ; Lachen
+GEM: 3103; AI; Rüte
+GEM: 10; ZH; Obfelden
+GEM: 3111; AI; Oberegg
+GEM: 1311; SZ; Gersau
+GEM: 1344; SZ; Lachen
+GEM: 855; BE; Schwarzenburg
+GEM: 861; BE; Belp
+GEM: 1084; LU; Eich
 QUP: 1; Lucas; Badertscher; 1
 QUP: 2; Klaus; Deck; 2
 QUP: 3; Robin; Csontos; 4
 QUP: 4; Fabian; Fischer; 4
 QUP: 5; Juerg; Wuest; 3
+QUP: 6; Robert; Fust; 0
 SSL: Fritschi AG; 1
 SSL: Furrer+Frei; 2
 SSL: Planzer; 4
+SSL: ABB; 6
+SSL: Sulzer; 2
 ABR: 3; 1; 2014; 1; 1000
 ABR: 3; 1; 2014; 2; 1000
 ABR: 3; 1; 2014; 3; 1500

@@ -211,9 +211,10 @@ public class QuellenSteuer {
          discriminator = line.substring(0, colonPosition).trim();
          line = line.substring(colonPosition + 1).trim();
 
-         List<String> tokens = new LinkedList<String>(); // alle Tokens
-                                                         // einlesen, Trenner
-                                                         // ist ";"
+         /*
+          * alle Tokens einlesen, Trenner ist ";"
+          */
+         List<String> tokens = new LinkedList<String>();
          while (true) {
             int delimPos = line.indexOf(";");
             if (delimPos < 0) {
@@ -266,7 +267,6 @@ public class QuellenSteuer {
         	  } catch (RuntimeException re) {
                   System.out.println("Error: " + re.getMessage());
               }
-        	  
           }
 
           else if ( discriminator.equals("ABR")) {
@@ -282,8 +282,8 @@ public class QuellenSteuer {
         	  } catch (RuntimeException re) {
                   System.out.println("Error: " + re.getMessage());
               }
-        	  
           }
+         
          else {
             System.out.println("Parsing error. Kein gültiger Discriminator: "
                   + discriminator);
@@ -305,7 +305,10 @@ public class QuellenSteuer {
 	         
 	         if( line==null )
 	            break;
-	         if (line.length() == 0 || line.charAt(0) == '#') // Leere Zeilen oder Kommentarzeilen ignorieren
+	         /*
+	          * Leere Zeilen oder Kommentarzeilen ignorieren
+	          */
+	         if (line.length() == 0 || line.charAt(0) == '#')
 	            continue;
 	         if( line.charAt(0)==EOF_CHAR )
 	            break;
@@ -330,6 +333,7 @@ public class QuellenSteuer {
 	     				}
 	     			}
 	     		}
+	     		
 	     		else if(discriminator[1].equals("bfs")){
 	     			if(discriminator.length != 3){
 	     				System.out.println("Keine BFS Nummer eingegeben. Bitt geben Sie einen Befehl im Format GEM bfs <BFS NR>");
@@ -356,7 +360,7 @@ public class QuellenSteuer {
 	     		
 	     		//ToDo: QUP löschen handhaben
 	     		
-	      	}else {
+	      	} else {
 	            System.out.println("Parsing error. Kein gültiger Discriminator: " + discriminator);
 	     	}
 	     	System.out.println("Anzahl der Zeilen: " + line_ct);
@@ -366,6 +370,7 @@ public class QuellenSteuer {
 		//ToDo: Prüfung für alle Argumente
 		
 	}
+	
 	
 	private static void show(Scanner sc) {
 		// Abbruchbedingungen definieren
@@ -379,10 +384,10 @@ public class QuellenSteuer {
 
 			if (line == null)
 				break;
-			if (line.length() == 0 || line.charAt(0) == '#') // Leere Zeilen
-																// oder
-																// Kommentarzeilen
-																// ignorieren
+			/*
+			 * Leere Zeilen oder Kommentarzeilen ignorieren
+			 */
+			if (line.length() == 0 || line.charAt(0) == '#')
 				continue;
 			if (line.charAt(0) == EOF_CHAR)
 				break;
@@ -398,29 +403,24 @@ public class QuellenSteuer {
 			// discriminator = line.substring(0).trim();
 			// System.out.println(discriminator);
 
-			List<String> tokens = new LinkedList<String>(); // alle Tokens
-															// einlesen, Trenner
-															// ist ";"
+			/*
+			 * alle Tokens einlesen, Trenner ist ";"
+			 */
+			List<String> tokens = new LinkedList<String>();
 
 			if (discriminator[0] == "GEM"
 					|| discriminator[0].equals(Gemeinde.DISCRIMINATOR)) {
 				if(discriminator.length == 1){
-					// debug
-					System.out.println("Standardsortierung GEM");
 					Collections.sort(gems);
 					System.out.println(gems.toString());
 				}
 				else {
 					
 					if (discriminator[1].equals("k")) {
-						// debug
-						System.out.println("Sortierung GEM k");
 						Collections.sort(gems, Gemeinde.GEM_K);
 						System.out.println(gems.toString());
 					}
 					if (discriminator[1].equals("b")) {
-						// debug
-						System.out.println("Sortierung GEM b");
 						Collections.sort(gems, Gemeinde.GEM_B);
 						System.out.println(gems.toString());
 					}
@@ -431,27 +431,47 @@ public class QuellenSteuer {
 			if (discriminator[0] == "QUP"
 					|| discriminator[0].equals(QUP.DISCRIMINATOR)) {
 				if(discriminator.length == 1){
-					// debug
-					System.out.println("Standardsortierung QUP");
 					Collections.sort(qups);
 					System.out.println(qups.toString());
 				}
 				else {
 					
 					if (discriminator[1].equals("k")) {
-						// debug
-						System.out.println("Sortierung QUP k");
 						Collections.sort(qups, QUP.QUP_K);
 						System.out.println(qups.toString());
 					}
 				}
-			}
+				
+				if (discriminator[0] == "SSL"
+						|| discriminator[0].equals(SSL.DISCRIMINATOR)) {
+					if(discriminator.length == 1){
+						Collections.sort(ssls);
+						System.out.println(ssls.toString());
+					}
+					else {
+						
+						if (discriminator[1].equals("k")) {
+							Collections.sort(ssls, SSL.SSL_K);
+							System.out.println(ssls.toString());
+						}
+					}
+				}
 				
 			
-			/*
-			if (discriminator[0] == "ABR"
+				if (discriminator[0] == "ABR"
 					|| discriminator[0].equals(ABR.DISCRIMINATOR)) {
-				// mach was
+					if(discriminator.length == 1){
+						Collections.sort(ssls);
+						System.out.println(ssls.toString());
+					}
+					else {
+						if (discriminator[1].equals("k")) {
+							Collections.sort(ssls, SSL.SSL_K);
+							System.out.println(ssls.toString());
+						}
+					}
+				}
+				
 			}
 			/*
 			 * else if (discriminator[1].equals("id")){ // Hier nach
@@ -459,8 +479,7 @@ public class QuellenSteuer {
 			 */
 
 			else {
-				System.out
-						.println("Parsing error. Kein gültiger Discriminator: "
+				System.out.println("Parsing error. Kein gültiger Discriminator: "
 								+ discriminator);
 			}
 			System.out.println("Anzahl der Zeilen: " + line_ct);
