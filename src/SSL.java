@@ -14,6 +14,7 @@ public class SSL implements Comparable{
 	private static int Sitz;
 	
 	final static Comparator SSL_id = new SSLidComp();
+	final static Comparator SSL_K = new SSLkComp();
 	
 	public SSL(int id, String firmenname, int sitz) {
 		ID = id;
@@ -66,6 +67,27 @@ public class SSL implements Comparable{
 		}
 
 	}
+	
+	   static class SSLkComp implements Comparator {
+		   /*  Sortierung: Kanton - Name - bfs
+		    */
+			public int compare(Object o1, Object o2) {
+				SSL s1 = (SSL)o1;
+				SSL s2 = (SSL)o2;
+				
+				// Sitz noch vergleichen. Wiso int? entspricht dies der BFS Nr.?
+				int cmp;
+//				int cmp = s1.Name.compareTo(s2.Name);
+//				if (cmp != 0)
+//					return cmp;
+				
+				cmp = s1.Firmenname.compareTo(s2.Firmenname);
+				if (cmp != 0)
+					return cmp;
+				
+				return 0;
+			}
+	   }
 	
 	public int getID() {
 		return ID;
