@@ -213,3 +213,9 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+*.class
+*.class
+src/ABR.class
+src/QUP.class
+src/QuellenSteuer.class
+src/SSL.class
